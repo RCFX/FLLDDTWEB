@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDT Awareness - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+<div class="logo">
+                <img src="fusion.png" 
+            </div>
+            <h1>DDT Awareness</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="impact.html">Problem Statement</a></li>
+                    <li><a href="solution.html">Solutions</a></li>
+                    <li><a href="forum.html">Reviews</a></li>
+                    <li><a href="home.html"class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Welcome to DDT Awareness</h2>
+            <p>We are dedicated to tackling the environmental and health impacts of DDT contamination.</p>
+            <a href="impact.html" class="cta-button">Discover the Problem</a>
+        </section>
+
+        <!-- Compact Search Bar -->
+<div id="compact-search-bar" style="display: flex; justify-content: center; align-items: center; margin: 10px 0;">
+    <div style="position: relative; width: 200px;">
+      <input 
+        type="text" 
+        id="compactSearchInput" 
+        placeholder="Navigate this website..." 
+        oninput="compactShowSuggestions()" 
+        style="width: 100%; padding: 5px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9;"
+      >
+      <ul id="compactSuggestionList" style="
+        position: absolute; 
+        top: 35px; 
+        left: 0; 
+        margin: 0; 
+        padding: 0; 
+        list-style: none; 
+        width: 100%; 
+        max-height: 100px; 
+        overflow-y: auto; 
+        border: 1px solid #000000; 
+        border-top: none; 
+        background-color: #007BFF; 
+        font-size: 14px; 
+        z-index: 1000; 
+        display: none;">
+      </ul>
+    </div>
+    <button 
+      onclick="compactNavigate()" 
+      style="padding: 5px 10px; margin-left: 5px; font-size: 14px; border: none; border-radius: 4px; background-color: #007BFF; color: #fff; cursor: pointer;"
+    >
+      Go
+    </button>
+  </div>
+  
+  <!-- JavaScript -->
+  <script>
+    // Keyword-to-URL mapping
+    const compactKeywordMap = {
+      "home": href="home.html",
+      "forum": href="forum.html",
+      "overview": href="index.html",
+      "problem statement": href="impact.html",
+      "solution": href="solution.html",
+      "about": href="about.html"
+    };
+  
+    // Fallback URL (e.g., Google Search)
+    const fallbackURL = href="404.html";
+  
+    // Show suggestions based on input
+    function compactShowSuggestions() {
+      const input = document.getElementById('compactSearchInput').value.toLowerCase();
+      const suggestionList = document.getElementById('compactSuggestionList');
+      suggestionList.innerHTML = ''; // Clear any previous suggestions
+  
+      if (input) {
+        const suggestions = Object.keys(compactKeywordMap).filter(keyword => keyword.startsWith(input));
+  
+        if (suggestions.length > 0) {
+          suggestionList.style.display = 'block'; // Make sure dropdown is visible
+          suggestions.forEach(keyword => {
+            const li = document.createElement('li');
+            li.textContent = keyword;
+            li.style.padding = '5px';
+            li.style.cursor = 'pointer';
+            li.onmouseover = () => li.style.backgroundColor = '#333';
+            li.onmouseout = () => li.style.backgroundColor = '#007BFF';
+            li.onclick = () => {
+              document.getElementById('compactSearchInput').value = keyword;
+              suggestionList.style.display = 'none'; // Hide suggestions after selecting
+            };
+            suggestionList.appendChild(li);
+          });
+        } else {
+          suggestionList.style.display = 'none';
+        }
+      } else {
+        suggestionList.style.display = 'none';
+      }
+    }
+  
+    // Navigate to URL or Fallback
+    function compactNavigate() {
+      const keyword = document.getElementById('compactSearchInput').value.toLowerCase();
+      const suggestionList = document.getElementById('compactSuggestionList');
+  
+      if (compactKeywordMap[keyword]) {
+        // Redirect to the matching URL
+        window.location.href = compactKeywordMap[keyword];
+      } else {
+        // Redirect to fallback URL with the entered search term
+        window.location.href = fallbackURL;
+      }
+      suggestionList.style.display = 'none'; // Hide suggestions after navigation
+    }
+  </script>
+  
+
+        <!-- About Section -->
+        <section class="about">
+            <h2>What is DDT?</h2>
+                <p> DDT (Dichlorodiphenyltrichloroethane) is an effective insecticide, that is colorless, tasteless, and almost odorless.</p>
+                <p>DDT is highly toxic for humans and marine life, along with insects,causing neurological problems and cancer.</p>
+        <p> About 40,000 lbs of DDT were dumped in the ocean waters right here near southern California after being banned for their harmful properties!</p>
+        <p> Dumped DDT barrels are falling apart due to natural corrosion and are contaminating surrounding areas, influencing marine ecosystems.</p>
+        <p> Researchers from Scripps Institution of Oceanography identified high levels of contamination of DDT in the areas. </p>
+        </section>
+
+        <!-- Problem Highlights Section -->
+        <section class="problem-highlights">
+            <h2>Why Should You Care?</h2>
+            <ul>
+                <p>DDT accumulates in the food chain, harming top predators and humans.</p>
+                <p>Contaminated water affects aquatic life and fishing industries.</p>
+                <p></p>DDT's toxicity poses risks to reproductive health and development.</p>
+                <p>DDT was also linked to health issues such as cancer, reproductive problems, and neurological effects in humans.</p>
+            </ul>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="actions">
+            <h2>What Can You Do?</h2>
+            <p>
+                Join us in raising awareness and taking action. Share your thoughts in the <a href="forum.html">forum</a>, 
+                or explore innovative <a href="solution.html">solutions</a> we are developing.
+            </p>
+            <a href="forum.html" class="cta-button">Visit the Forum</a>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+<footer id="sticky-footer" style="
+text-align: center; 
+padding: 10px 0; 
+background-color: #333; 
+color: #ffffff; 
+font-size: 14px; 
+width: 100%; 
+position: absolute; 
+bottom: 0; 
+left: 0; 
+border-top: 1px solid #00000000;">
+&copy; <span id="currentYear"></span> FLL Team Jazzed (#66465) Naga and Rishi
+</footer>
+
+<!-- Script to Update Year -->
+<script>
+// Automatically update the year
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Ensure footer sticks to bottom even if content is short
+function adjustFooter() {
+  const footer = document.getElementById('sticky-footer');
+  const bodyHeight = document.body.offsetHeight;
+  const viewportHeight = window.innerHeight;
+
+  if (bodyHeight < viewportHeight) {
+    footer.style.position = 'fixed';
+  } else {
+    footer.style.position = 'static';
+  }
+}
+
+// Run on load and on resize
+window.onload = adjustFooter;
+window.onresize = adjustFooter;
+</script>
+
+</body>
+</footer>
+</html>

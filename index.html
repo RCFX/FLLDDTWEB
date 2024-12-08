@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDT Awareness - Overview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>DDT Awareness</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Overview</a></li>
+                    <li><a href="impact.html">Problem Statement</a></li>
+                    <li><a href="solution.html">Solutions</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    <div id="compact-search-bar" style="display: flex; justify-content: center; align-items: center; margin: 10px 0;">
+        <div style="position: relative; width: 200px;">
+          <input 
+            type="text" 
+            id="compactSearchInput" 
+            placeholder="Navigate this website..." 
+            oninput="compactShowSuggestions()" 
+            style="width: 100%; padding: 5px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9;"
+          >
+          <ul id="compactSuggestionList" style="
+            position: absolute; 
+            top: 35px; 
+            left: 0; 
+            margin: 0; 
+            padding: 0; 
+            list-style: none; 
+            width: 100%; 
+            max-height: 100px; 
+            overflow-y: auto; 
+            border: 1px solid #000000; 
+            border-top: none; 
+            background-color: #007BFF; 
+            font-size: 14px; 
+            z-index: 1000; 
+            display: none;">
+          </ul>
+        </div>
+        <button 
+          onclick="compactNavigate()" 
+          style="padding: 5px 10px; margin-left: 5px; font-size: 14px; border: none; border-radius: 4px; background-color: #007BFF; color: #fff; cursor: pointer;"
+        >
+          Go
+        </button>
+      </div>
+      
+      <!-- JavaScript -->
+      <script>
+        // Keyword-to-URL mapping
+        const compactKeywordMap = {
+          "home": href="home.html",
+          "forum": href="forum.html",
+          "overview": href="index.html",
+          "problem statement": href="impact.html",
+          "solution": href="solution.html",
+          "about": href="about.html"
+        };
+      
+        // Fallback URL (e.g., Google Search)
+        const fallbackURL = href="404.html";
+      
+        // Show suggestions based on input
+        function compactShowSuggestions() {
+          const input = document.getElementById('compactSearchInput').value.toLowerCase();
+          const suggestionList = document.getElementById('compactSuggestionList');
+          suggestionList.innerHTML = ''; // Clear any previous suggestions
+      
+          if (input) {
+            const suggestions = Object.keys(compactKeywordMap).filter(keyword => keyword.startsWith(input));
+      
+            if (suggestions.length > 0) {
+              suggestionList.style.display = 'block'; // Make sure dropdown is visible
+              suggestions.forEach(keyword => {
+                const li = document.createElement('li');
+                li.textContent = keyword;
+                li.style.padding = '5px';
+                li.style.cursor = 'pointer';
+                li.onmouseover = () => li.style.backgroundColor = '#333';
+                li.onmouseout = () => li.style.backgroundColor = '#007BFF';
+                li.onclick = () => {
+                  document.getElementById('compactSearchInput').value = keyword;
+                  suggestionList.style.display = 'none'; // Hide suggestions after selecting
+                };
+                suggestionList.appendChild(li);
+              });
+            } else {
+              suggestionList.style.display = 'none';
+            }
+          } else {
+            suggestionList.style.display = 'none';
+          }
+        }
+      
+        // Navigate to URL or Fallback
+        function compactNavigate() {
+          const keyword = document.getElementById('compactSearchInput').value.toLowerCase();
+          const suggestionList = document.getElementById('compactSuggestionList');
+      
+          if (compactKeywordMap[keyword]) {
+            // Redirect to the matching URL
+            window.location.href = compactKeywordMap[keyword];
+          } else {
+            // Redirect to fallback URL with the entered search term
+            window.location.href = fallbackURL;
+          }
+          suggestionList.style.display = 'none'; // Hide suggestions after navigation
+        }
+      </script>
+
+    <main>
+        <section>
+            <h2>What is DDT?</h2>
+            <p>
+                DDT (Dichlorodiphenyltrichloroethane) is an effective insecticide which  is a harmful substance almost colorless, tasteless and odorless,
+                 highly toxic to humans and animals. Now, The barrels are falling apart contaminating the environment with DDT and other harmful chemicals.
+
+
+                Researchers from Scripps institute of Oceanography are researching the contamination level and ways to stop them. 
+
+            </p>
+        </section>
+    </main>
+
+   <!-- Footer Section -->
+<footer id="sticky-footer" style="
+text-align: center; 
+padding: 10px 0; 
+background-color: #333; 
+color: #ffffff; 
+font-size: 14px; 
+width: 100%; 
+position: absolute; 
+bottom: 0; 
+left: 0; 
+border-top: 1px solid #00000000;">
+&copy; <span id="currentYear"></span> FLL Team Jazzed (#66465) Naga and Rishi
+</footer>
+
+<!-- Script to Update Year -->
+<script>
+// Automatically update the year
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Ensure footer sticks to bottom even if content is short
+function adjustFooter() {
+  const footer = document.getElementById('sticky-footer');
+  const bodyHeight = document.body.offsetHeight;
+  const viewportHeight = window.innerHeight;
+
+  if (bodyHeight < viewportHeight) {
+    footer.style.position = 'fixed';
+  } else {
+    footer.style.position = 'static';
+  }
+}
+
+// Run on load and on resize
+window.onload = adjustFooter;
+window.onresize = adjustFooter;
+</script>
+
+
+   
+</body>
+
+</html>
